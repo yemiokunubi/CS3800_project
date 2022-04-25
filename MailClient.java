@@ -15,7 +15,7 @@ import javax.activation.*;
 import javax.mail.*;
 import javax.mail.internet.*;
 
-public class EmailService 
+public class MailClient
 {
 	public static void main(String[] args) 
 	{
@@ -61,7 +61,7 @@ public class EmailService
 			// Set To: header field of the header.
 			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
 
-			// Set Subject: header field
+			// Set Subject: header field.
 			System.out.println("Type subject text: ");
 			message.setSubject(scnr.nextLine());
 
