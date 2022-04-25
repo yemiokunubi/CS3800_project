@@ -103,8 +103,6 @@ public class EmailService
 			messageBodyPart.setDataHandler(new DataHandler(source));
 			messageBodyPart.setFileName(fileName);
 			multipart.addBodyPart(messageBodyPart);
-			
-			String filename = "";
 
 			// Send the complete message parts.
 			message.setContent(multipart);
