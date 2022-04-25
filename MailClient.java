@@ -90,12 +90,21 @@ public class EmailService
 
 			// Include attachment.
 			messageBodyPart = new MimeBodyPart();
-			String filename = "";
+			
+			// Ask user for file.
+			System.out.println("Attach a file (give file path): ");
 			// EX - /Users/kyle/eclipse-workspace/MailClient/bin/filename (on Apple, will be different on Windows)
-			DataSource source = new FileDataSource(filename);
+			String fileData = scnr.nextLine();
+			DataSource source = new FileDataSource(fileData);
+			
+			// Ask user for attachment name.
+			System.out.println("Set name for your attachment: ");
+			String fileName = scnr.nextLine();
 			messageBodyPart.setDataHandler(new DataHandler(source));
-			messageBodyPart.setFileName(filename);
+			messageBodyPart.setFileName(fileName);
 			multipart.addBodyPart(messageBodyPart);
+			
+			String filename = "";
 
 			// Send the complete message parts.
 			message.setContent(multipart);
