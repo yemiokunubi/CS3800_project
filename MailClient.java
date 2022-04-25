@@ -19,7 +19,7 @@ public class EmailService
 {
 	public static void main(String[] args) 
 	{
-		// Ask for recepient's email adress.
+		// Ask for recepient's email address.
 		Scanner scnr = new Scanner(System.in);
 		System.out.println("What is the recepient's email?");
 		String to = scnr.nextLine();
