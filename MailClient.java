@@ -1,4 +1,5 @@
- /** 
+
+/** 
  * Project by Jordan Bui, Christopher Hoang, Yemi Okunubi, Gia Quach, Kyle Tam
  *
  * Class: CS 3800.01
@@ -6,75 +7,108 @@
  * Name of Program: MailClient
  *
  */
-import java.util.*;
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.PasswordAuthentication;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
 
-public class MailClient
+import java.util.Properties;
+import java.util.Scanner;
+
+import javax.activation.*;
+import javax.mail.*;
+import javax.mail.internet.*;
+
+public class EmailService 
 {
-	public static void main (String[] args)
+	public static void main(String[] args) 
 	{
-		//Initial ask for recepient email, along with senders email and login info
+		// Ask for recepient's email adress.
 		Scanner scnr = new Scanner(System.in);
 		System.out.println("What is the recepient's email?");
-		String dst = scnr.nextLine();
+		String to = scnr.nextLine();
 
+		// Declare sender's email address and information.
 		String from = "billybronconetworking2022@gmail.com";
+
 		final String username = "billybronconetworking2022@gmail.com";
 		final String password = "cs380001";
 
+		// Set host.
 		String host = "localhost";
 
-		//Set up before creating a Session object
+		// Properties to set before creating Session object.
 		Properties properties = System.getProperties();
 		properties.put("mail.smtp.auth", "true");
 		properties.put("mail.smtp.starttls.enable", "true");
 		properties.put("mail.smtp.host", "smtp.gmail.com");
 		properties.put("mail.smtp.port", "587");
-		properties.put("mail.smtp.socketFactory.class",
-							"javax.net.ssl.SSLSocketFactory");
+		properties.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
 
-		//Get Session object
-		Session session = Session.getInstance(properties,new javax.mail.Authenticator() 
+		// Get the Session object.
+		Session session = Session.getInstance(properties, new javax.mail.Authenticator() 
 		{
-            protected PasswordAuthentication getPasswordAuthentication() 
+			protected PasswordAuthentication getPasswordAuthentication() 
 			{
-               return new PasswordAuthentication(username, password);
-	  		}
-        });
+				return new PasswordAuthentication(username, password);
+			}
+		});
 
 		try 
 		{
-			// Create message (MimeMessage is an abstract class of Message)
+			// Create a default MimeMessage object.
 			Message message = new MimeMessage(session);
-		 
+
 			// Set From: header field of the header.
 			message.setFrom(new InternetAddress(from));
-		 
-			// Set To: header field of the header.
-			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(dst));
-		 
-			// Set subject header
-			message.setSubject("Testing Subject");
-		 
-			// Set the message text/body of the message
-			message.setText("Sample text");
-	 
-			// Send message command
-			Transport.send(message);
-	 
-			System.out.println("Message sent successfully");
-	 
-		   } 
-		   catch (MessagingException e) 
-		   {
-			  throw new RuntimeException(e);
-		   }
 
+			// Set To: header field of the header.
+			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
+
+			// Set Subject: header field
+			System.out.println("Type subject text: ");
+			message.setSubject(scnr.nextLine());
+
+			// Create the message body object.
+			BodyPart messageBodyPart = new MimeBodyPart();
+
+			// Ask user to compose message body.
+			System.out.println("Type body text (type 'done' to finish): ");
+			String bodyText;
+			String resultBodyText = "";
+			
+			// Scan all input until 'done' is read.
+			while (!("done".equals(scnr.nextLine()))) 
+			{
+				bodyText = scnr.nextLine();
+				resultBodyText = resultBodyText + bodyText;
+			}
+
+			messageBodyPart.setText(resultBodyText);
+
+			// Create a multipart message.
+			Multipart multipart = new MimeMultipart();
+
+			// Set text message part.
+			multipart.addBodyPart(messageBodyPart);
+
+			// Include attachment.
+			messageBodyPart = new MimeBodyPart();
+			String filename = "";
+			// EX - /Users/kyle/eclipse-workspace/MailClient/bin/filename (on Apple, will be different on Windows)
+			DataSource source = new FileDataSource(filename);
+			messageBodyPart.setDataHandler(new DataHandler(source));
+			messageBodyPart.setFileName(filename);
+			multipart.addBodyPart(messageBodyPart);
+
+			// Send the complete message parts.
+			message.setContent(multipart);
+
+			// Send message.
+			Transport.send(message);
+
+			System.out.println("Sent message successfully....");
+		}
+
+		catch (MessagingException e) 
+		{
+			throw new RuntimeException(e);
+		}
 	}
 }
