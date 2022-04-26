@@ -40,6 +40,7 @@ public class MailClient
 		properties.put("mail.smtp.host", "smtp.gmail.com");
 		properties.put("mail.smtp.port", "587");
 		properties.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+		properties.put("mail.smtp.ssl.protocols", "TLSv1.2");
 
 		// Get the Session object.
 		Session session = Session.getInstance(properties, new javax.mail.Authenticator() 
@@ -72,15 +73,21 @@ public class MailClient
 			System.out.println("Type body text (type 'done' to finish): ");
 			String bodyText;
 			String resultBodyText = "";
+
+			// Declare value for infinite while loop
+			int inf = 0;
 			
 			// Scan all input until 'done' is read.
-			while (!("done".equals(scnr.nextLine()))) 
+			while (inf != 1) 
 			{
 				bodyText = scnr.nextLine();
-				resultBodyText = resultBodyText + bodyText;
+				if (bodyText.contains("done")) {
+					break;
+				}
+				resultBodyText += bodyText + "\n";
 			}
 
-			messageBodyPart.setText(resultBodyText);
+			messageBodyPart.setText(resultBodyText + "\n");
 
 			// Create a multipart message.
 			Multipart multipart = new MimeMultipart();
@@ -95,14 +102,16 @@ public class MailClient
 			System.out.println("Attach a file (give file path): ");
 			// EX - /Users/kyle/eclipse-workspace/MailClient/bin/filename (on Apple, will be different on Windows)
 			String fileData = scnr.nextLine();
-			DataSource source = new FileDataSource(fileData);
+			if (fileData != "") {
+				DataSource source = new FileDataSource(fileData);
 			
-			// Ask user for attachment name.
-			System.out.println("Set name for your attachment: ");
-			String fileName = scnr.nextLine();
-			messageBodyPart.setDataHandler(new DataHandler(source));
-			messageBodyPart.setFileName(fileName);
-			multipart.addBodyPart(messageBodyPart);
+				// Ask user for attachment name.
+				System.out.println("Set name for your attachment: ");
+				String fileName = scnr.nextLine();
+				messageBodyPart.setDataHandler(new DataHandler(source));
+				messageBodyPart.setFileName(fileName);
+				multipart.addBodyPart(messageBodyPart);
+			}
 
 			// Send the complete message parts.
 			message.setContent(multipart);
