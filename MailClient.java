@@ -99,15 +99,17 @@ public class MailClient
 			messageBodyPart = new MimeBodyPart();
 			
 			// Ask user for file.
-			System.out.println("Attach a file (give file path): ");
+			System.out.println("Attach a file (give file path, or type 'none' for no attachment): ");
 			// EX - /Users/kyle/eclipse-workspace/MailClient/bin/filename (on Apple, will be different on Windows)
 			String fileData = scnr.nextLine();
-			if (fileData != "") {
+			if (!(fileData.contains("none"))) 
+			{
 				DataSource source = new FileDataSource(fileData);
 			
 				// Ask user for attachment name.
 				System.out.println("Set name for your attachment: ");
 				String fileName = scnr.nextLine();
+				
 				messageBodyPart.setDataHandler(new DataHandler(source));
 				messageBodyPart.setFileName(fileName);
 				multipart.addBodyPart(messageBodyPart);
