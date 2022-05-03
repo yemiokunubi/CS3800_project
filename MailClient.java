@@ -78,23 +78,21 @@ public class MailClient
 
 			// Include attachment.
 			messageBodyPart = new MimeBodyPart();
-			
+
 			// Ask user for file.
 			// EX - /Users/kyle/eclipse-workspace/MailClient/bin/filename (on Apple, will be different on Windows)
-			String fileData = filePath;
-			if(fileData != null)
-			{
-				DataSource source = new FileDataSource(fileData);
-				
+			if (filePath.contains("\\")) { 
+
+				DataSource source = new FileDataSource(filePath);
+						
 				messageBodyPart.setDataHandler(new DataHandler(source));
-				messageBodyPart.setFileName(fileData);
+				messageBodyPart.setFileName(filePath);
 				multipart.addBodyPart(messageBodyPart);
 			}
-			
 
 			// Send the complete message parts.
 			message.setContent(multipart);
-			
+
 			// Send message.
 			Transport.send(message);
 
