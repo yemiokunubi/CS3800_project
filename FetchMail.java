@@ -1,4 +1,5 @@
 
+import java.util.ArrayList;
 import java.util.Properties;
 
 import javax.mail.*;
@@ -12,11 +13,15 @@ public class FetchMail
 		String username = "billybronconetworking2022@gmail.com";
 		String password = "cs380001";
 
-		checkMail(host, mailStoreType, username, password);
+		ArrayList<String> emails = checkMail(host, mailStoreType, username, password);
+		 for (String i : emails) {
+		      System.out.println(i);
+		    }
 	}
 
-	public static void checkMail(String host, String storeType, String user, String password) 
+	public static ArrayList<String> checkMail(String host, String storeType, String user, String password) 
 	{
+		ArrayList<String> emails = new ArrayList<String>();
 		try 
 		{
 			// Properties to set before creating Session object.
@@ -41,18 +46,24 @@ public class FetchMail
 			Message[] messages = emailFolder.getMessages();
 			System.out.println("Your Inbox \n\nNumber of Emails: " + messages.length);
 
+			//Adds html tags to the string so that it can be sent to the GUI to display properly
+			String result;
 			for (int i = 0, n = messages.length; i < n; i++) 
 			{
 				Message message = messages[i];
-				System.out.println("---------------------------------");
-				System.out.println("Email #" + (i + 1));
-				System.out.println("Subject: " + message.getSubject());
-				System.out.println("From: " + message.getFrom()[0]);
+				result = "<html>---------------------------------";
+				result += "<br/>Email #" + (i + 1);
+				result += "<br/>Subject: " + message.getSubject();
+				result += "<br/>From: " + message.getFrom()[0];
+				emails.add(result);
+				result = "";
 			}
 
 			// Close the store object and folder.
 			emailFolder.close(false);
 			store.close();
+			
+			
 
 		}
 
@@ -68,5 +79,6 @@ public class FetchMail
 		{
 			e.printStackTrace();
 		}
+		return emails;
 	}
 }
