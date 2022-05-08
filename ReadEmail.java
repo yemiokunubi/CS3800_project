@@ -103,20 +103,17 @@ public class ReadEmail
 		}
 
 		System.out.println("----------------------------");
-		System.out.println("CONTENT-TYPE: " + p.getContentType());
 
 		// If content is plain text.
 		if (p.isMimeType("text/plain")) 
 		{
-			System.out.println("This is plain text");
-			System.out.println("---------------------------");
+			//System.out.println("This is plain text");
 			System.out.println((String) p.getContent());
 		}
 		// If content has an attachment.
 		else if (p.isMimeType("multipart/*")) 
 		{
-			System.out.println("This is a Multipart");
-			System.out.println("---------------------------");
+			//System.out.println("This is a Multipart");
 			Multipart mp = (Multipart) p.getContent();
 			int count = mp.getCount();
 			for (int i = 0; i < count; i++)
@@ -125,14 +122,13 @@ public class ReadEmail
 		// If content is a nested message.
 		else if (p.isMimeType("message/rfc822")) 
 		{
-			System.out.println("This is a Nested Message");
-			System.out.println("---------------------------");
+			//System.out.println("This is a Nested Message");
 			writePart((Part) p.getContent());
 		}
 		// If content is an inline image.
 		else if (p.isMimeType("image/jpeg")) 
 		{
-			System.out.println("--------> image/jpeg");
+			//System.out.println("--------> image/jpeg");
 			Object o = p.getContent();
 
 			InputStream x = (InputStream) o;
@@ -164,8 +160,9 @@ public class ReadEmail
 			{
 				output.write(buffer, 0, bytesRead);
 			}
-		} 
-		else 
+		}
+		// Keep remarked; this block causes the HTML messy output. Will delete later.
+		/*else 
 		{
 			Object o = p.getContent();
 			if (o instanceof String) 
@@ -190,7 +187,8 @@ public class ReadEmail
 				System.out.println("---------------------------");
 				System.out.println(o.toString());
 			}
-		}
+		}*/
+		//System.exit(0);
 	}
 
 	// Print sender, receiver, and subject of the message.
