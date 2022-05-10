@@ -20,7 +20,7 @@ import javax.swing.JList;
 public class EmailGUI extends JFrame {
 
 	private JPanel contentPane;
-	private ArrayList<String> emails = FetchMail.checkMail("pop.gmail.com", "pop3", "billybronconetworking2022@gmail.com", "cs380001");
+	private ArrayList<String> emails = FetchMail.checkMail("imap.gmail.com", "imaps", "billybronconetworking2022@gmail.com", "cs380001");
 
 	/**
 	 * Launch the application.
