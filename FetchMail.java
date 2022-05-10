@@ -8,8 +8,8 @@ public class FetchMail
 {
 	public static void main(String[] args) 
 	{
-		String host = "pop.gmail.com";
-		String mailStoreType = "pop3";
+		String host = "imap.gmail.com";
+		String mailStoreType = "imap";
 		String username = "billybronconetworking2022@gmail.com";
 		String password = "cs380001";
 
@@ -27,14 +27,14 @@ public class FetchMail
 			// Properties to set before creating Session object.
 			Properties properties = new Properties();
 
-			properties.put("mail.pop3.host", host);
-			properties.put("mail.pop3.port", "995");
-			properties.put("mail.pop3.starttls.enable", "true");
+			properties.put("mail.imap.host", host);
+			properties.put("mail.imap.port", "995");
+			properties.put("mail.imap.starttls.enable", "true");
 			properties.put("mail.smtp.ssl.protocols", "TLSv1.2");
 			Session emailSession = Session.getDefaultInstance(properties);
 
 			// Create POP3 store object and connect with the pop server.
-			Store store = emailSession.getStore("pop3s");
+			Store store = emailSession.getStore("imaps");
 
 			store.connect(host, user, password);
 
