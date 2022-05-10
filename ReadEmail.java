@@ -61,15 +61,6 @@ public class ReadEmail
 				Message message = messages[i];
 				System.out.println("---------------------------------");
 				writePart(message);
-				// String line = reader.readLine();
-				// if ("YES".equals(line)) 
-				// {
-				// 	message.writeTo(System.out);
-				// } 
-				// if ("QUIT".equals(line)) 
-				// {
-				// 	break;
-				// }
 			}
 
 			// Close the store object and folder.
@@ -98,22 +89,18 @@ public class ReadEmail
 	{
 		if (p instanceof Message)
 		{
-			// Call methos writeEnvelope
+			// Call method writeEnvelope.
 			writeEnvelope((Message) p);
 		}
-
-		System.out.println("----------------------------");
 
 		// If content is plain text.
 		if (p.isMimeType("text/plain")) 
 		{
-			//System.out.println("This is plain text");
 			System.out.println((String) p.getContent());
 		}
 		// If content has an attachment.
 		else if (p.isMimeType("multipart/*")) 
 		{
-			//System.out.println("This is a Multipart");
 			Multipart mp = (Multipart) p.getContent();
 			int count = mp.getCount();
 			for (int i = 0; i < count; i++)
@@ -122,13 +109,11 @@ public class ReadEmail
 		// If content is a nested message.
 		else if (p.isMimeType("message/rfc822")) 
 		{
-			//System.out.println("This is a Nested Message");
 			writePart((Part) p.getContent());
 		}
 		// If content is an inline image.
 		else if (p.isMimeType("image/jpeg")) 
 		{
-			//System.out.println("--------> image/jpeg");
 			Object o = p.getContent();
 
 			InputStream x = (InputStream) o;
@@ -161,35 +146,6 @@ public class ReadEmail
 				output.write(buffer, 0, bytesRead);
 			}
 		}
-
-		// Keep remarked; this block causes the HTML messy output. Will delete later.
-		/*else 
-		{
-			Object o = p.getContent();
-			if (o instanceof String) 
-			{
-				System.out.println("This is a string");
-				System.out.println("---------------------------");
-				System.out.println((String) o);
-			} 
-			else if (o instanceof InputStream) 
-			{
-				System.out.println("This is just an input stream");
-				System.out.println("---------------------------");
-				InputStream is = (InputStream) o;
-				is = (InputStream) o;
-				int c;
-				while ((c = is.read()) != -1)
-					System.out.write(c);
-			} 
-			else 
-			{
-				System.out.println("This is an unknown type");
-				System.out.println("---------------------------");
-				System.out.println(o.toString());
-			}
-		}*/
-		//System.exit(0);
 	}
 
 	// Print sender, receiver, and subject of the message.
