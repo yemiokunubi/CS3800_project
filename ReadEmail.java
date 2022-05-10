@@ -12,13 +12,14 @@ import java.util.Properties;
 
 import javax.mail.*;
 
+
 public class ReadEmail 
 {
 	public static void main(String[] args) 
 	{
 
-		String host = "pop.gmail.com";
-		String mailStoreType = "pop3";
+		String host = "imap.gmail.com";
+		String mailStoreType = "imap";
 		String username = "billybronconetworking2022@gmail.com";
 		String password = "cs380001";
 
@@ -27,29 +28,29 @@ public class ReadEmail
 
 	}
 
-	public static void fetch(String pop3Host, String storeType, String user, String password) 
+	public static void fetch(String imapHost, String storeType, String user, String password) 
 	{
 		try 
 		{
 			// Properties to set before creating Session object.
 			Properties properties = new Properties();
-			properties.put("mail.store.protocol", "pop3");
-			properties.put("mail.pop3.host", pop3Host);
-			properties.put("mail.pop3.port", "995");
-			properties.put("mail.pop3.starttls.enable", "true");
+			properties.put("mail.store.protocol", "imaps");
+			properties.put("mail.imap.host", imapHost);
+			properties.put("mail.imap.port", "995");
+			properties.put("mail.imap.starttls.enable", "true");
 			properties.put("mail.smtp.ssl.protocols", "TLSv1.2");
 			Session emailSession = Session.getDefaultInstance(properties);
 
 			// Create POP3 store object and connect with the pop server.
-			Store store = emailSession.getStore("pop3s");
+			Store store = emailSession.getStore("imaps");
 
-			store.connect(pop3Host, user, password);
+			store.connect(imapHost, user, password);
 
 			// Create folder object and open it.
 			Folder emailFolder = store.getFolder("INBOX");
 			emailFolder.open(Folder.READ_ONLY);
 
-			BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+			// BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
 			// Retrieve messages from folder in an array and print them.
 			Message[] messages = emailFolder.getMessages();
@@ -60,21 +61,20 @@ public class ReadEmail
 				Message message = messages[i];
 				System.out.println("---------------------------------");
 				writePart(message);
-				String line = reader.readLine();
-				if ("YES".equals(line)) 
-				{
-					message.writeTo(System.out);
-				} 
-				else if ("QUIT".equals(line)) 
-				{
-					break;
-				}
+				// String line = reader.readLine();
+				// if ("YES".equals(line)) 
+				// {
+				// 	message.writeTo(System.out);
+				// } 
+				// if ("QUIT".equals(line)) 
+				// {
+				// 	break;
+				// }
 			}
 
 			// Close the store object and folder.
 			emailFolder.close(false);
 			store.close();
-
 		} 
 		catch (NoSuchProviderException e) 
 		{
@@ -161,6 +161,7 @@ public class ReadEmail
 				output.write(buffer, 0, bytesRead);
 			}
 		}
+
 		// Keep remarked; this block causes the HTML messy output. Will delete later.
 		/*else 
 		{
