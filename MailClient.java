@@ -23,10 +23,14 @@ public class MailClient
 		String to = recepient;
 		// Declare sender's email address and information.
 		String from = "billybronconetworking2022@gmail.com";
-
+		//String from = "billybronco567@yahoo.com";
+		//String from = "billybronconetworking2022@outlook.com";
+		
 		final String username = "billybronconetworking2022@gmail.com";
-		final String password = "cs380001";
-
+		final String password = "cs380001"; // Outlook uses same password
+		//final String password = "fehrieoydktslbqu"; // Yahoo Mail password
+		
+		
 		// Set host.
 		String host = "localhost";
 
@@ -35,6 +39,8 @@ public class MailClient
 		properties.put("mail.smtp.auth", "true");
 		properties.put("mail.smtp.starttls.enable", "true");
 		properties.put("mail.smtp.host", "smtp.gmail.com");
+		//properties.put("mail.smtp.host", "smtp.mail.yahoo.com");
+		//properties.put("mail.smtp.host", "smtp.outlook.com");
 		properties.put("mail.smtp.port", "587");
 		properties.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
 		properties.put("mail.smtp.ssl.protocols", "TLSv1.2");
