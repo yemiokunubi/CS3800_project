@@ -22,6 +22,20 @@ public class ReadEmail
 		String mailStoreType = "imap";
 		String username = "billybronconetworking2022@gmail.com";
 		String password = "cs380001";
+		
+		/* For Yahoo Mail! (change port number in properties to 993)
+		String host = "imap.mail.yahoo.com";
+		String mailStoreType = "imap";
+		String username = "billybronco567@yahoo.com";
+		String password = "fehrieoydktslbqu";
+		 */
+		
+		/* For Outlook (change port number in properties to 993)
+		String host = "outlook.office365.com";
+		String mailStoreType = "imap";
+		String username = "billybronconetworking2022@outlook.com";
+		String password = "cs380001";
+		 */
 
 		// Call method fetch
 		fetch(host, mailStoreType, username, password);
