@@ -7,6 +7,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Properties;
 
@@ -37,13 +38,13 @@ public class ReadEmail
 		String password = "cs380001";
 		 */
 
-		// Call method fetch
-		fetch(host, mailStoreType, username, password);
+		
 
 	}
 
-	public static void fetch(String imapHost, String storeType, String user, String password) 
+	public static ArrayList<String> fetch(String imapHost, String storeType, String user, String password) 
 	{
+		ArrayList<String> emailMsgs = new ArrayList<String>();
 		try 
 		{
 			// Properties to set before creating Session object.
@@ -73,8 +74,9 @@ public class ReadEmail
 			for (int i = 0; i < messages.length; i++) 
 			{
 				Message message = messages[i];
-				System.out.println("---------------------------------");
-				writePart(message);
+				StringBuilder emailBody = new StringBuilder();
+				writePart(message, emailBody);
+				emailMsgs.add(emailBody.toString());
 			}
 
 			// Close the store object and folder.
@@ -97,20 +99,22 @@ public class ReadEmail
 		{
 			e.printStackTrace();
 		}
+		return emailMsgs;
 	}
 
-	public static void writePart(Part p) throws Exception 
+	public static void writePart(Part p, StringBuilder str) throws Exception 
 	{
 		if (p instanceof Message)
 		{
 			// Call method writeEnvelope.
-			writeEnvelope((Message) p);
+			writeEnvelope((Message) p, str);
 		}
 
 		// If content is plain text.
 		if (p.isMimeType("text/plain")) 
 		{
-			System.out.println((String) p.getContent());
+			str.append((String) p.getContent());
+			str.append(System.getProperty("line.separator"));
 		}
 		// If content has an attachment.
 		else if (p.isMimeType("multipart/*")) 
@@ -118,12 +122,12 @@ public class ReadEmail
 			Multipart mp = (Multipart) p.getContent();
 			int count = mp.getCount();
 			for (int i = 0; i < count; i++)
-				writePart(mp.getBodyPart(i));
+				writePart(mp.getBodyPart(i), str);
 		}
 		// If content is a nested message.
 		else if (p.isMimeType("message/rfc822")) 
 		{
-			writePart((Part) p.getContent());
+			writePart((Part) p.getContent(), str);
 		}
 		// If content is an inline image.
 		else if (p.isMimeType("image/jpeg")) 
@@ -163,7 +167,7 @@ public class ReadEmail
 	}
 
 	// Print sender, receiver, and subject of the message.
-	public static void writeEnvelope(Message m) throws Exception 
+	public static void writeEnvelope(Message m, StringBuilder str) throws Exception 
 	{
 		Address[] a;
 
@@ -172,7 +176,8 @@ public class ReadEmail
 		{
 			for (int j = 0; j < a.length; j++)
 			{
-				System.out.println("FROM: " + a[j].toString());
+				str.append("FROM: " + a[j].toString());
+				str.append(System.getProperty("line.separator"));
 			}
 		}
 
@@ -181,14 +186,16 @@ public class ReadEmail
 		{
 			for(int j = 0; j < a.length; j++)
 			{
-				System.out.println("TO: " + a[j].toString());
+				str.append("TO: " + a[j].toString());
+				str.append(System.getProperty("line.separator"));
 			}	
 		}
 
 		// Subject
 		if (m.getSubject() != null)
 		{
-			System.out.println("SUBJECT: " + m.getSubject());
+			str.append("SUBJECT: " + m.getSubject());
+			str.append(System.getProperty("line.separator"));
 		}
 	}
 }

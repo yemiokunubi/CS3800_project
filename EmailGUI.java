@@ -16,11 +16,18 @@ import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
+
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import javax.swing.JTextField;
+import javax.swing.JTextArea;
 
 public class EmailGUI extends JFrame {
 
 	private JPanel contentPane;
 	private ArrayList<String> emails = FetchMail.checkMail("imap.gmail.com", "imaps", "billybronconetworking2022@gmail.com", "cs380001");
+	private ArrayList<String> emailBody = ReadEmail.fetch("imap.gmail.com", "imaps", "billybronconetworking2022@gmail.com", "cs380001");
 
 	/**
 	 * Launch the application.
@@ -51,31 +58,41 @@ public class EmailGUI extends JFrame {
 		JButton btnNewButton = new JButton("+ Compose");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				SendMailGUI sendMail = new SendMailGUI();
+				sendMail.setVisible(rootPaneCheckingEnabled);
 			}
 		});
 		
 		JScrollPane scrollPane = new JScrollPane();
+		
+		JScrollPane scrollPane_1 = new JScrollPane();
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
+			gl_contentPane.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addContainerGap(139, Short.MAX_VALUE)
-					.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 133, GroupLayout.PREFERRED_SIZE))
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(131)
-					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 385, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(135, Short.MAX_VALUE))
+					.addContainerGap()
+					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 248, GroupLayout.PREFERRED_SIZE)
+					.addGap(18)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addComponent(btnNewButton, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 133, GroupLayout.PREFERRED_SIZE)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addComponent(scrollPane_1, GroupLayout.DEFAULT_SIZE, 365, Short.MAX_VALUE)
+							.addContainerGap())))
 		);
 		gl_contentPane.setVerticalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
+			gl_contentPane.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGap(14)
 					.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 336, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+					.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
+						.addComponent(scrollPane_1)
+						.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 336, Short.MAX_VALUE))
+					.addContainerGap())
 		);
 		
+		JTextArea textArea = new JTextArea();
+		scrollPane_1.setViewportView(textArea);
 		
 		DefaultListModel listModel = new DefaultListModel();
 		for(int i = 0; i < emails.size(); i++)
@@ -84,8 +101,23 @@ public class EmailGUI extends JFrame {
 		}
 		
 		JList list = new JList(listModel);
+		list.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				 JList list = (JList)e.getSource();
+			        if (e.getClickCount() == 2) {
+
+			            // Double-click detected
+			            int index = list.locationToIndex(e.getPoint());
+			            textArea.setText(emailBody.get(index));
+			        }
+			}
+		});
 		list.setCellRenderer(new MyListCellRenderer());
 		scrollPane.setViewportView(list);
+		
+		
+		
 		contentPane.setLayout(gl_contentPane);
 	}
 	
