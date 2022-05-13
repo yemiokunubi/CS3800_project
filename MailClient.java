@@ -87,7 +87,7 @@ public class MailClient
 
 			// Ask user for file.
 			// EX - /Users/kyle/eclipse-workspace/MailClient/bin/filename (on Apple, will be different on Windows)
-			if (filePath.contains("\\")) { 
+			if (filePath.contains("\\") || filePath.contains("/")) { 
 
 				DataSource source = new FileDataSource(filePath);
 						
