@@ -67,8 +67,8 @@ public class LoginGUI extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				emailChoice = "yahoo";
 				imapName = "imap.mail.yahoo.com";
-				emailName = "billybronco567@yahoo.com";
-				password = "fehrieoydktslbqu";
+				// emailName = "billybronco567@yahoo.com";
+				// password = "fehrieoydktslbqu";
 				portNum = "993";
 			}
 		});
@@ -81,8 +81,8 @@ public class LoginGUI extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				emailChoice = "gmail";
 				imapName = "imap.gmail.com";
-				emailName = "billybronconetworking2022@gmail.com";
-				password = "cs380001";
+				// emailName = "billybronconetworking2022@gmail.com";
+				// password = "cs380001";
 				portNum = "995";
 			}
 		});
@@ -121,8 +121,15 @@ public class LoginGUI extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				try
 		        {
-		            EmailGUI newEmailWindow = new EmailGUI();		//change ticket window name
-		            newEmailWindow.setVisible(true);
+					emailName = email_input.getText();
+					password = new String(passwordField.getPassword());
+					if (EmailValidator.checkMail(emailName)) {
+						EmailGUI newEmailWindow = new EmailGUI();		//change ticket window name
+						newEmailWindow.setVisible(true);
+						setVisible(false);
+					} else {
+						System.out.println("This " + emailChoice + " account does not exist");
+					}
 		        }
 		        catch (Exception ex)
 		        {
