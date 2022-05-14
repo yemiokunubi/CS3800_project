@@ -6,20 +6,45 @@ import javax.mail.*;
 
 public class FetchMail 
 {
+
 	public static void main(String[] args) 
 	{
-		String host = "imap.gmail.com";
-		String mailStoreType = "imap";
-		String username = "billybronconetworking2022@gmail.com";
-		String password = "cs380001";
-
-		ArrayList<String> emails = checkMail(host, mailStoreType, username, password);
+		String emailServer = LoginGUI.emailChoice;	//email server that the user chooses
+				
+//		public static String host;
+		String host = null;
+		String mailStoreType = null;
+		String username = null;
+		String password = null;
+		String portNumber = null;
+		
+		if(emailServer.equals("gmail")) {
+			host = "imap.gmail.com";
+			mailStoreType = "imap";
+			username = "billybronconetworking2022@gmail.com";
+			password = "cs380001";
+			portNumber= "995";
+			
+		}
+		
+		if(emailServer.equals("yahoo")) {
+			host = "imap.mail.yahoo.com";
+			mailStoreType = "imap";
+			username = "billybronco567@yahoo.com";
+			password = "fehrieoydktslbqu";
+			portNumber = "993";
+			
+		}
+		
+		
+				
+		ArrayList<String> emails = checkMail(host, mailStoreType, username, password, portNumber);
 		 for (String i : emails) {
 		      System.out.println(i);
 		    }
 	}
 
-	public static ArrayList<String> checkMail(String host, String storeType, String user, String password) 
+	public static ArrayList<String> checkMail(String host, String storeType, String user, String password, String portNumber) 
 	{
 		ArrayList<String> emails = new ArrayList<String>();
 		try 
@@ -28,7 +53,8 @@ public class FetchMail
 			Properties properties = new Properties();
 
 			properties.put("mail.imap.host", host);
-			properties.put("mail.imap.port", "995");
+			properties.put("mail.imap.port", portNumber);
+//			properties.put("mail.imap.port", "993");
 			properties.put("mail.imap.starttls.enable", "true");
 			properties.put("mail.smtp.ssl.protocols", "TLSv1.2");
 			Session emailSession = Session.getDefaultInstance(properties);
@@ -45,6 +71,7 @@ public class FetchMail
 			// Retrieve messages from folder in an array and print them.
 			Message[] messages = emailFolder.getMessages();
 			System.out.println("Your Inbox \n\nNumber of Emails: " + messages.length);
+			
 
 			//Adds html tags to the string so that it can be sent to the GUI to display properly
 			String result;

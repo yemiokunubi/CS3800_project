@@ -17,19 +17,53 @@ import javax.mail.internet.*;
 
 public class MailClient
 {
+	public static String username;
+	public static String password;
 	public static void sendMail(String recepient, String subject, String body, String filePath) 
 	{
 
 		String to = recepient;
 		// Declare sender's email address and information.
-		String from = "billybronconetworking2022@gmail.com";
-		//String from = "billybronco567@yahoo.com";
+//		String from = "billybronconetworking2022@gmail.com";
+//		String from = "billybronco567@yahoo.com";
 		//String from = "billybronconetworking2022@outlook.com";
 		
-		final String username = "billybronconetworking2022@gmail.com";
-		final String password = "cs380001"; // Outlook uses same password
-		//final String password = "fehrieoydktslbqu"; // Yahoo Mail password
+//		final String username = "billybronconetworking2022@gmail.com";
+//		final String username = "billybronco567@yahoo.com";
+//		final String password = "cs380001"; // Outlook uses same password
+//		final String password = "fehrieoydktslbqu"; // Yahoo Mail password
+
 		
+		String emailServer = LoginGUI.emailChoice;	//email server that the user chooses
+		
+//		public static String host;
+//		String mailStoreType = null;
+//		String username = null;
+//		String password = null;
+		String portNumber = null;
+		String from = null;
+		String smtpHost = null;
+		
+		if(emailServer.equals("gmail")) {
+//			mailStoreType = "imap";
+			username = "billybronconetworking2022@gmail.com";
+			from = "billybronconetworking2022@gmail.com";
+			password = "cs380001";
+			portNumber= "995";
+			smtpHost = "smtp.gmail.com";
+			
+		}
+		
+		if(emailServer.equals("yahoo")) {
+//			mailStoreType = "imap";
+			username = "billybronco567@yahoo.com";
+			from = username;
+			password = "fehrieoydktslbqu";
+			portNumber = "993";
+			smtpHost = "smtp.mail.yahoo.com";
+			
+			
+		}
 		
 		// Set host.
 		String host = "localhost";
@@ -38,10 +72,10 @@ public class MailClient
 		Properties properties = System.getProperties();
 		properties.put("mail.smtp.auth", "true");
 		properties.put("mail.smtp.starttls.enable", "true");
-		properties.put("mail.smtp.host", "smtp.gmail.com");
-		//properties.put("mail.smtp.host", "smtp.mail.yahoo.com");
+//		properties.put("mail.smtp.host", "smtp.gmail.com");
+		properties.put("mail.smtp.host", smtpHost);
 		//properties.put("mail.smtp.host", "smtp.outlook.com");
-		properties.put("mail.smtp.port", "587");
+		properties.put("mail.smtp.port", "587");		//this might need to change for outlook
 		properties.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
 		properties.put("mail.smtp.ssl.protocols", "TLSv1.2");
 		properties.put("mail.smtp.ssl.checkserveridentity", "true");
