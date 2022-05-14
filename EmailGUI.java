@@ -26,8 +26,14 @@ import javax.swing.JTextArea;
 public class EmailGUI extends JFrame {
 
 	private JPanel contentPane;
-	private ArrayList<String> emails = FetchMail.checkMail("imap.gmail.com", "imaps", "billybronconetworking2022@gmail.com", "cs380001");
-	private ArrayList<String> emailBody = ReadEmail.fetch("imap.gmail.com", "imaps", "billybronconetworking2022@gmail.com", "cs380001");
+//	private ArrayList<String> emails = FetchMail.checkMail("imap.gmail.com", "imaps", "billybronconetworking2022@gmail.com", "cs380001");
+//	private ArrayList<String> emailBody = ReadEmail.fetch("imap.gmail.com", "imaps", "billybronconetworking2022@gmail.com", "cs380001");
+//	private ArrayList<String> emails = FetchMail.checkMail("imap.mail.yahoo.com", "imaps", "billybronco567@yahoo.com", "fehrieoydktslbqu", "993");
+//	private ArrayList<String> emailBody = ReadEmail.fetch("imap.mail.yahoo.com", "imaps", "billybronco567@yahoo.com", "fehrieoydktslbqu", "993");
+	
+	private ArrayList<String> emails = FetchMail.checkMail(LoginGUI.imapName, "imaps", LoginGUI.emailName, LoginGUI.password, LoginGUI.portNum);
+	private ArrayList<String> emailBody = ReadEmail.fetch(LoginGUI.imapName, "imaps", LoginGUI.emailName, LoginGUI.password, LoginGUI.portNum);
+
 
 	/**
 	 * Launch the application.
