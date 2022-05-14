@@ -16,16 +16,16 @@ public class MultipleAttachmentsEmailClient
 		System.out.println("What is the recepient's email?");
 		String to = scnr.nextLine();
 		
-		String from = "billybronconetworking2022@outlook.com";
+		String from = "billybronconetworking2022@gmail.com";
 
-		final String username = "billybronconetworking2022@outlook.com";
+		final String username = "billybronconetworking2022@gmail.com";
 		final String password = "cs380001";
 
 		// Properties to set before creating Session object.
 		Properties properties = System.getProperties();
 		properties.put("mail.smtp.auth", "true");
 		properties.put("mail.smtp.starttls.enable", "true");
-		properties.put("mail.smtp.host", "smtp.outlook.com");
+		properties.put("mail.smtp.host", "smtp.gmail.com");
 		properties.put("mail.smtp.port", "587");
 		properties.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
 		properties.put("mail.smtp.ssl.protocols", "TLSv1.2");
@@ -127,7 +127,6 @@ public class MultipleAttachmentsEmailClient
 					attachPart.setFileName(fileName);
 					nameCounter++;
 					attachmentCount++;
-					System.out.println(attachmentCount);
 					multipart.addBodyPart(attachPart);
 				}
 			}
