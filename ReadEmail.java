@@ -64,6 +64,14 @@ public class ReadEmail
 			portNumber = "993";
 			
 		}
+		if(emailServer.equals("outlook")) {
+			host = "outlook.office365.com";
+			mailStoreType = "imap";
+			username = "billybronconetworking2022@outlook.com";
+			password = "cs380001";
+			portNumber = "993";
+			
+		}
 
 		
 
@@ -78,7 +86,6 @@ public class ReadEmail
 			Properties properties = new Properties();
 			properties.put("mail.store.protocol", "imaps");
 			properties.put("mail.imap.host", imapHost);
-//			properties.put("mail.imap.port", "995");
 			properties.put("mail.imap.port", portNumber);
 			properties.put("mail.imap.starttls.enable", "true");
 			properties.put("mail.smtp.ssl.protocols", "TLSv1.2");

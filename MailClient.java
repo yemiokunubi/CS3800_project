@@ -36,16 +36,11 @@ public class MailClient
 		
 		String emailServer = LoginGUI.emailChoice;	//email server that the user chooses
 		
-//		public static String host;
-//		String mailStoreType = null;
-//		String username = null;
-//		String password = null;
 		String portNumber = null;
 		String from = null;
 		String smtpHost = null;
 		
 		if(emailServer.equals("gmail")) {
-//			mailStoreType = "imap";
 			username = "billybronconetworking2022@gmail.com";
 			from = "billybronconetworking2022@gmail.com";
 			password = "cs380001";
@@ -55,13 +50,20 @@ public class MailClient
 		}
 		
 		if(emailServer.equals("yahoo")) {
-//			mailStoreType = "imap";
 			username = "billybronco567@yahoo.com";
 			from = username;
 			password = "fehrieoydktslbqu";
 			portNumber = "993";
 			smtpHost = "smtp.mail.yahoo.com";
 			
+			
+		}
+		if(emailServer.equals("outlook")) {
+			username = "billybronconetworking2022@outlook.com";
+			from = username;
+			password = "cs380001";
+			portNumber = "993";
+			smtpHost = "smtp.outlook.com";
 			
 		}
 		
@@ -72,9 +74,7 @@ public class MailClient
 		Properties properties = System.getProperties();
 		properties.put("mail.smtp.auth", "true");
 		properties.put("mail.smtp.starttls.enable", "true");
-//		properties.put("mail.smtp.host", "smtp.gmail.com");
 		properties.put("mail.smtp.host", smtpHost);
-		//properties.put("mail.smtp.host", "smtp.outlook.com");
 		properties.put("mail.smtp.port", "587");		//this might need to change for outlook
 		properties.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
 		properties.put("mail.smtp.ssl.protocols", "TLSv1.2");

@@ -93,6 +93,11 @@ public class LoginGUI extends JFrame {
 		JRadioButton outlook_button = new JRadioButton("Outlook");
 		outlook_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				emailChoice = "outlook";
+				imapName = "outlook.office365.com";
+				// emailName = "billybronconetworking2022@gmail.com";
+				// password = "cs380001";
+				portNum = "993";
 			}
 		});
 		buttonGroup.add(outlook_button);

@@ -11,7 +11,6 @@ public class FetchMail
 	{
 		String emailServer = LoginGUI.emailChoice;	//email server that the user chooses
 				
-//		public static String host;
 		String host = null;
 		String mailStoreType = null;
 		String username = null;
@@ -35,6 +34,14 @@ public class FetchMail
 			portNumber = "993";
 			
 		}
+		if(emailServer.equals("outlook")) {
+			host = "outlook.office365.com";
+			mailStoreType = "imap";
+			username = "billybronconetworking2022@outlook.com";
+			password = "cs380001";
+			portNumber = "993";
+			
+		}
 		
 		
 				
@@ -54,7 +61,6 @@ public class FetchMail
 
 			properties.put("mail.imap.host", host);
 			properties.put("mail.imap.port", portNumber);
-//			properties.put("mail.imap.port", "993");
 			properties.put("mail.imap.starttls.enable", "true");
 			properties.put("mail.smtp.ssl.protocols", "TLSv1.2");
 			Session emailSession = Session.getDefaultInstance(properties);
