@@ -81,7 +81,6 @@ public class LoginGUI extends JFrame
 	 */
 	public LoginGUI() 
 	{
-	
 		// final String emailChoice;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 651, 415);
