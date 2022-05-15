@@ -12,11 +12,14 @@ import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JCheckBoxMenuItem;
+import javax.security.sasl.AuthenticationException;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
+import java.util.ArrayList;
 
 public class LoginGUI extends JFrame {
 
@@ -128,12 +131,17 @@ public class LoginGUI extends JFrame {
 		        {
 					emailName = email_input.getText();
 					password = new String(passwordField.getPassword());
-					if (EmailValidator.checkMail(emailName)) {
+					ArrayList<String> emails = FetchMail.checkMail(imapName, "imaps", emailName, password, portNum);
+					if (EmailValidator.checkMail(emailName) && emails.size() > 0) {
 						EmailGUI newEmailWindow = new EmailGUI();		//change ticket window name
 						newEmailWindow.setVisible(true);
 						setVisible(false);
+						emails = null;
 					} else {
-						System.out.println("This " + emailChoice + " account does not exist");
+						if (EmailValidator.checkMail(emailName)) 
+							System.out.println("Incorrect password");
+						else 
+							System.out.println("This " + emailChoice + " account does not exist");
 					}
 		        }
 		        catch (Exception ex)

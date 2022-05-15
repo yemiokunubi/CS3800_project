@@ -64,6 +64,7 @@ public class ReadEmail
 			portNumber = "993";
 			
 		}
+
 		if(emailServer.equals("outlook")) {
 			host = "outlook.office365.com";
 			mailStoreType = "imap";
@@ -72,8 +73,6 @@ public class ReadEmail
 			portNumber = "993";
 			
 		}
-
-		
 
 	}
 
@@ -86,6 +85,7 @@ public class ReadEmail
 			Properties properties = new Properties();
 			properties.put("mail.store.protocol", "imaps");
 			properties.put("mail.imap.host", imapHost);
+//			properties.put("mail.imap.port", "995");
 			properties.put("mail.imap.port", portNumber);
 			properties.put("mail.imap.starttls.enable", "true");
 			properties.put("mail.smtp.ssl.protocols", "TLSv1.2");
@@ -104,7 +104,7 @@ public class ReadEmail
 
 			// Retrieve messages from folder in an array and print them.
 			Message[] messages = emailFolder.getMessages();
-			// System.out.println("Your Inbox \n\nNumber of Emails: " + messages.length);
+			System.out.println("Your Inbox \n\nNumber of Emails: " + messages.length);
 
 			for (int i = 0; i < messages.length; i++) 
 			{

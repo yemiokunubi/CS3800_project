@@ -6,11 +6,11 @@ import javax.mail.*;
 
 public class FetchMail 
 {
-
 	public static void main(String[] args) 
 	{
 		String emailServer = LoginGUI.emailChoice;	//email server that the user chooses
 				
+//		public static String host;
 		String host = null;
 		String mailStoreType = null;
 		String username = null;
@@ -34,6 +34,7 @@ public class FetchMail
 			portNumber = "993";
 			
 		}
+		
 		if(emailServer.equals("outlook")) {
 			host = "outlook.office365.com";
 			mailStoreType = "imap";
@@ -42,8 +43,6 @@ public class FetchMail
 			portNumber = "993";
 			
 		}
-		
-		
 				
 		ArrayList<String> emails = checkMail(host, mailStoreType, username, password, portNumber);
 		 for (String i : emails) {
@@ -61,6 +60,7 @@ public class FetchMail
 
 			properties.put("mail.imap.host", host);
 			properties.put("mail.imap.port", portNumber);
+//			properties.put("mail.imap.port", "993");
 			properties.put("mail.imap.starttls.enable", "true");
 			properties.put("mail.smtp.ssl.protocols", "TLSv1.2");
 			Session emailSession = Session.getDefaultInstance(properties);
@@ -76,7 +76,7 @@ public class FetchMail
 
 			// Retrieve messages from folder in an array and print them.
 			Message[] messages = emailFolder.getMessages();
-			System.out.println("Your Inbox \n\nNumber of Emails: " + messages.length);
+			// System.out.println("Your Inbox \n\nNumber of Emails: " + messages.length);
 			
 
 			//Adds html tags to the string so that it can be sent to the GUI to display properly
@@ -114,4 +114,5 @@ public class FetchMail
 		}
 		return emails;
 	}
+
 }
