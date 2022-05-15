@@ -57,11 +57,11 @@ public class SendMailGUI extends JDialog
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		
 		// To and From labels.
-		JLabel lblNewLabel = new JLabel("To:");
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 9));
+		JLabel toLabel = new JLabel("To:");
+		toLabel.setFont(new Font("Monaco", Font.PLAIN, 9));
 		
-		JLabel lblNewLabel_1 = new JLabel("Subject:");
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 9));
+		JLabel fromLabel = new JLabel("Subject:");
+		fromLabel.setFont(new Font("Monaco", Font.PLAIN, 9));
 		
 		// Text fields for To and From.
 		toTextField = new JTextField();
@@ -74,7 +74,7 @@ public class SendMailGUI extends JDialog
 		
 		// Attachment label.
 		JLabel attachmentLabel = new JLabel("Attachment:");
-		attachmentLabel.setFont(new Font("Tahoma", Font.PLAIN, 9));
+		attachmentLabel.setFont(new Font("Monaco", Font.PLAIN, 9));
 		
 		attachmentTextField = new JTextField();
 		attachmentTextField.setColumns(10);
@@ -82,7 +82,7 @@ public class SendMailGUI extends JDialog
 		// Attachment Button - Attach files to email.
 		JButton attachmentButton = new JButton("Attach File");
 		Image attachmentImg = new ImageIcon(this.getClass().getResource("AttachmentIcon.png")).getImage();
-	    	attachmentButton.setIcon(new ImageIcon(attachmentImg));
+	    attachmentButton.setIcon(new ImageIcon(attachmentImg));
 		attachmentButton.addActionListener(new ActionListener() 
 		{
 			public void actionPerformed(ActionEvent e) 
@@ -101,7 +101,7 @@ public class SendMailGUI extends JDialog
 		// Send Button - Send finished email.
 		JButton sendButton = new JButton("Send");
 		Image sendImg = new ImageIcon(this.getClass().getResource("SendEmailIcon.png")).getImage();
-	    	sendButton.setIcon(new ImageIcon(sendImg));
+	    sendButton.setIcon(new ImageIcon(sendImg));
 		sendButton.addActionListener(new ActionListener() 
 		{
 			public void actionPerformed(ActionEvent e) 
@@ -117,7 +117,7 @@ public class SendMailGUI extends JDialog
 		
 		// Message Body label.
 		JLabel messageLabel = new JLabel("Message:");
-		messageLabel.setFont(new Font("Tahoma", Font.PLAIN, 9));
+		messageLabel.setFont(new Font("Monaco", Font.PLAIN, 11));
 		
 	
 		// Create content panel to contain components.
@@ -127,8 +127,8 @@ public class SendMailGUI extends JDialog
 				.addGroup(gl_contentPanel.createSequentialGroup()
 					.addGap(18)
 					.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblNewLabel_1, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
+						.addComponent(toLabel, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
+						.addComponent(fromLabel, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
 						.addComponent(messageLabel, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
 						.addComponent(attachmentLabel, GroupLayout.PREFERRED_SIZE, 64, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
@@ -155,12 +155,12 @@ public class SendMailGUI extends JDialog
 				.addGroup(gl_contentPanel.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblNewLabel)
+						.addComponent(toLabel)
 						.addComponent(toTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(18)
 					.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
 						.addComponent(subjectTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblNewLabel_1))
+						.addComponent(fromLabel))
 					.addGap(33)
 					.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_contentPanel.createSequentialGroup()
