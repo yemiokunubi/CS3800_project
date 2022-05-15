@@ -20,6 +20,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 import java.util.ArrayList;
+import java.awt.Color;
 
 public class LoginGUI extends JFrame {
 
@@ -124,6 +125,13 @@ public class LoginGUI extends JFrame {
 		passwordField.setBounds(157, 273, 349, 26);
 		contentPane.add(passwordField);
 		
+		JLabel incorrectLabel = new JLabel();
+		incorrectLabel.setForeground(Color.RED);
+		incorrectLabel.setBounds(224, 300, 223, 16);
+		contentPane.add(incorrectLabel);
+		incorrectLabel.setVisible(false);
+		
+		
 		JButton LoginButton = new JButton("Login");
 		LoginButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -138,10 +146,21 @@ public class LoginGUI extends JFrame {
 						setVisible(false);
 						emails = null;
 					} else {
-						if (EmailValidator.checkMail(emailName)) 
+						if (EmailValidator.checkMail(emailName)) {
 							System.out.println("Incorrect password");
-						else 
+							incorrectLabel.setText("Incorrect password!");
+							incorrectLabel.setVisible(true);
+							
+						
+						}
+							
+						else {
 							System.out.println("This " + emailChoice + " account does not exist");
+							incorrectLabel.setVisible(true);
+							incorrectLabel.setText("This " + emailChoice + " account does not exist");
+						}
+							
+						
 					}
 		        }
 		        catch (Exception ex)
@@ -171,5 +190,8 @@ public class LoginGUI extends JFrame {
 		gmailLogoLabel.setIcon(new ImageIcon(img3));
 		gmailLogoLabel.setBounds(484, 33, 117, 99);
 		contentPane.add(gmailLogoLabel);
+		
+		
+		
 	}
 }

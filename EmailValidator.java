@@ -1,7 +1,6 @@
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 
-//Check if the email exist
 public class EmailValidator {
     public static boolean checkMail (String email) {
         boolean isValid = false;

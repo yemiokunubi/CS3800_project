@@ -60,7 +60,6 @@ public class FetchMail
 
 			properties.put("mail.imap.host", host);
 			properties.put("mail.imap.port", portNumber);
-//			properties.put("mail.imap.port", "993");
 			properties.put("mail.imap.starttls.enable", "true");
 			properties.put("mail.smtp.ssl.protocols", "TLSv1.2");
 			Session emailSession = Session.getDefaultInstance(properties);
