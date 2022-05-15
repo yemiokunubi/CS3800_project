@@ -117,7 +117,7 @@ public class SendMailGUI extends JDialog
 		
 		// Message Body label.
 		JLabel messageLabel = new JLabel("Message:");
-		messageLabel.setFont(new Font("Monaco", Font.PLAIN, 11));
+		messageLabel.setFont(new Font("Monaco", Font.PLAIN, 9));
 		
 	
 		// Create content panel to contain components.
