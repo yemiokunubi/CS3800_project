@@ -21,7 +21,7 @@ public class FetchMail
 			host = "imap.gmail.com";
 			mailStoreType = "imap";
 			username = "billybronconetworking2022@gmail.com";
-			password = "cs380001";
+			password = "cs380002";
 			portNumber= "995";
 			
 		}

@@ -19,25 +19,6 @@ public class ReadEmail
 	public static void main(String[] args) 
 	{
 
-//		port number is 995
-//		String host = "imap.gmail.com";
-//		String mailStoreType = "imap";
-//		String username = "billybronconetworking2022@gmail.com";
-//		String password = "cs380001";
-		
-//		 For Yahoo Mail! (change port number in properties to 993)
-//		String host = "imap.mail.yahoo.com";
-//		String mailStoreType = "imap";
-//		String username = "billybronco567@yahoo.com";
-//		String password = "fehrieoydktslbqu";
-		 
-		
-		/* For Outlook (change port number in properties to 993)
-		String host = "outlook.office365.com";
-		String mailStoreType = "imap";
-		String username = "billybronconetworking2022@outlook.com";
-		String password = "cs380001";
-		 */
 		
 		String emailServer = LoginGUI.emailChoice;	//email server that the user chooses
 		
@@ -51,7 +32,7 @@ public class ReadEmail
 			host = "imap.gmail.com";
 			mailStoreType = "imap";
 			username = "billybronconetworking2022@gmail.com";
-			password = "cs380001";
+			password = "cs380002";
 			portNumber= "995";
 			
 		}
@@ -85,7 +66,6 @@ public class ReadEmail
 			Properties properties = new Properties();
 			properties.put("mail.store.protocol", "imaps");
 			properties.put("mail.imap.host", imapHost);
-//			properties.put("mail.imap.port", "995");
 			properties.put("mail.imap.port", portNumber);
 			properties.put("mail.imap.starttls.enable", "true");
 			properties.put("mail.smtp.ssl.protocols", "TLSv1.2");
