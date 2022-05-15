@@ -82,7 +82,7 @@ public class SendMailGUI extends JDialog
 		// Attachment Button - Attach files to email.
 		JButton attachmentButton = new JButton("Attach File");
 		Image attachmentImg = new ImageIcon(this.getClass().getResource("AttachmentIcon.png")).getImage();
-	    attachmentButton.setIcon(new ImageIcon(attachmentImg));
+	    	attachmentButton.setIcon(new ImageIcon(attachmentImg));
 		attachmentButton.addActionListener(new ActionListener() 
 		{
 			public void actionPerformed(ActionEvent e) 
@@ -101,7 +101,7 @@ public class SendMailGUI extends JDialog
 		// Send Button - Send finished email.
 		JButton sendButton = new JButton("Send");
 		Image sendImg = new ImageIcon(this.getClass().getResource("SendEmailIcon.png")).getImage();
-	    sendButton.setIcon(new ImageIcon(sendImg));
+	    	sendButton.setIcon(new ImageIcon(sendImg));
 		sendButton.addActionListener(new ActionListener() 
 		{
 			public void actionPerformed(ActionEvent e) 
