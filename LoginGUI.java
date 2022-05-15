@@ -21,6 +21,15 @@ import java.awt.event.ActionEvent;
 
 import java.util.ArrayList;
 import java.awt.Color;
+import javax.swing.border.LineBorder;
+import javax.swing.border.BevelBorder;
+import java.awt.Panel;
+import java.awt.SystemColor;
+import javax.swing.UIManager;
+import java.awt.Font;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.MatteBorder;
+import javax.swing.border.TitledBorder;
 
 
 public class LoginGUI extends JFrame {
@@ -35,7 +44,7 @@ public class LoginGUI extends JFrame {
 	private JPasswordField passwordField;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 
-	// emailName = "billybronco567@yahoo.com";
+	// emailName = "billybronco14@yahoo.com";
 	// password = "fehrieoydktslbqu";
 	
 	//	emailName = "billybronconetworking2022@gmail.com";
@@ -70,6 +79,7 @@ public class LoginGUI extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 651, 415);
 		contentPane = new JPanel();
+		contentPane.setBackground(UIManager.getColor("FormattedTextField.background"));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -85,7 +95,7 @@ public class LoginGUI extends JFrame {
 			}
 		});
 		buttonGroup.add(yahoo_button);
-		yahoo_button.setBounds(287, 118, 85, 56);
+		yahoo_button.setBounds(64, 204, 85, 56);
 		contentPane.add(yahoo_button);
 		
 		JRadioButton gmail_button = new JRadioButton("Gmail");
@@ -99,10 +109,11 @@ public class LoginGUI extends JFrame {
 			}
 		});
 		buttonGroup.add(gmail_button);
-		gmail_button.setBounds(481, 118, 68, 56);
+		gmail_button.setBounds(64, 136, 68, 56);
 		contentPane.add(gmail_button);
 		
 		JRadioButton outlook_button = new JRadioButton("Outlook");
+		outlook_button.setFont(new Font("Geneva", Font.PLAIN, 13));
 		outlook_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				emailChoice = "outlook";
@@ -112,34 +123,33 @@ public class LoginGUI extends JFrame {
 			}
 		});
 		buttonGroup.add(outlook_button);
-		outlook_button.setBounds(106, 118, 85, 56);
+		outlook_button.setBounds(64, 282, 85, 56);
 		contentPane.add(outlook_button);
 		
 		email_input = new JTextField();
-		email_input.setBounds(157, 217, 349, 26);
+		email_input.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0)), "Email", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		email_input.setBounds(308, 126, 337, 43);
 		contentPane.add(email_input);
 		email_input.setColumns(10);
 		
-		JLabel lblNewLabel = new JLabel("Email");
-		lblNewLabel.setBounds(161, 200, 61, 16);
-		contentPane.add(lblNewLabel);
-		
-		JLabel lblNewLabel_1 = new JLabel("Password");
-		lblNewLabel_1.setBounds(161, 255, 61, 16);
-		contentPane.add(lblNewLabel_1);
-		
 		passwordField = new JPasswordField();
-		passwordField.setBounds(157, 273, 349, 26);
+		passwordField.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0)), "Password", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		passwordField.setBounds(308, 199, 337, 43);
 		contentPane.add(passwordField);
 		
 		JLabel incorrectLabel = new JLabel();
-		incorrectLabel.setForeground(Color.RED);
-		incorrectLabel.setBounds(224, 300, 223, 16);
+		incorrectLabel.setFont(new Font("Lucida Grande", Font.BOLD, 14));
+		incorrectLabel.setForeground(new Color(178, 34, 34));
+		incorrectLabel.setBounds(325, 322, 307, 16);
 		contentPane.add(incorrectLabel);
-		incorrectLabel.setVisible(false);
 		
 		
-		JButton LoginButton = new JButton("Login");
+		JButton LoginButton = new JButton("LOGIN");
+		LoginButton.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
+		LoginButton.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
+		LoginButton.setOpaque(true);
+		LoginButton.setForeground(new Color(255, 255, 255));
+		LoginButton.setBackground(new Color(147, 112, 219));
 		LoginButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try
@@ -177,26 +187,50 @@ public class LoginGUI extends JFrame {
 			
 			}
 		});
-		LoginButton.setBounds(268, 321, 117, 29);
+		LoginButton.setBounds(315, 272, 317, 44);
 		contentPane.add(LoginButton);
 		
 		JLabel outlookLogoLabel = new JLabel("");
 		Image img1 = new ImageIcon(this.getClass().getResource("outlook.png")).getImage();
 		outlookLogoLabel.setIcon(new ImageIcon(img1));
-		outlookLogoLabel.setBounds(124, 33, 85, 99);
+		outlookLogoLabel.setBounds(171, 272, 68, 84);
 		contentPane.add(outlookLogoLabel);
 		
 		JLabel yahooLogoLabel = new JLabel("");
-		Image img2 = new ImageIcon(this.getClass().getResource("yahoo.png")).getImage();
+		yahooLogoLabel.setBorder(null);
+		Image img2 = new ImageIcon(this.getClass().getResource("yahooRound.png")).getImage();
 		yahooLogoLabel.setIcon(new ImageIcon(img2));
-		yahooLogoLabel.setBounds(298, 33, 94, 99);
+		yahooLogoLabel.setBounds(169, 191, 82, 84);
 		contentPane.add(yahooLogoLabel);
 		
 		JLabel gmailLogoLabel = new JLabel("");
 		Image img3 = new ImageIcon(this.getClass().getResource("gmail.png")).getImage();
 		gmailLogoLabel.setIcon(new ImageIcon(img3));
-		gmailLogoLabel.setBounds(484, 33, 117, 99);
+		gmailLogoLabel.setBounds(169, 119, 85, 78);
 		contentPane.add(gmailLogoLabel);
+		Image bg = new ImageIcon(this.getClass().getResource("rectCol.png")).getImage();
+		
+		JLabel welcomeLabel = new JLabel("Welcome");
+		welcomeLabel.setFont(new Font("Monaco", Font.BOLD, 40));
+		welcomeLabel.setForeground(UIManager.getColor("FormattedTextField.background"));
+		welcomeLabel.setBounds(76, 41, 168, 47);
+		contentPane.add(welcomeLabel);
+		
+		JLabel selectPromptLabel = new JLabel("Select server:");
+		selectPromptLabel.setFont(new Font("Monaco", Font.BOLD, 13));
+		selectPromptLabel.setBounds(99, 89, 114, 16);
+		contentPane.add(selectPromptLabel);
+		
+		JLabel shape = new JLabel("");
+		shape.setIcon(new ImageIcon(bg));
+		shape.setBounds(12, 17, 291, 347);
+		contentPane.add(shape);
+		
+		JLabel lblSignIn = new JLabel("Sign In");
+		lblSignIn.setForeground(new Color(147, 112, 219));
+		lblSignIn.setFont(new Font("Monaco", Font.BOLD, 30));
+		lblSignIn.setBounds(411, 67, 168, 47);
+		contentPane.add(lblSignIn);
 		
 		
 		
