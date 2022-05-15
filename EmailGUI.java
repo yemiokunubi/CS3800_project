@@ -1,8 +1,11 @@
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.EventQueue;
+import java.awt.Font;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.DefaultListCellRenderer;
@@ -21,6 +24,7 @@ import javax.swing.JOptionPane;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JTextField;
+import javax.swing.UIManager;
 import javax.swing.JTextArea;
 
 public class EmailGUI extends JFrame {
@@ -60,6 +64,14 @@ public class EmailGUI extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
+		
+		// Adds inbox title
+		JLabel inboxLabel = new JLabel("Inbox");
+		inboxLabel.setFont(new Font("Monaco", Font.BOLD, 40));
+		inboxLabel.setForeground(new Color(147, 112, 219));
+		inboxLabel.setBounds(76, 41, 168, 47);
+		contentPane.add(inboxLabel);
+
 		
 		JButton btnNewButton = new JButton("+ Compose");
 		btnNewButton.addActionListener(new ActionListener() {
@@ -144,4 +156,7 @@ public class EmailGUI extends JFrame {
         }
 
     }
+
 }
+
+
