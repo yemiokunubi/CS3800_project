@@ -30,20 +30,22 @@ public class MailClient
 		String portNumber = null;
 		String from = null;
 		String smtpHost = null;
+//		LoginGUI.imapName, "imaps", LoginGUI.emailName, LoginGUI.password, LoginGUI.portNum
+
 		
 		if(emailServer.equals("gmail")) {
-			username = "billybronconetworking2022@gmail.com";
-			from = "billybronconetworking2022@gmail.com";
-			password = "cs380002";
+			username = LoginGUI.emailName;
+			from = username;
+			password = LoginGUI.password;
 			portNumber= "995";
 			smtpHost = "smtp.gmail.com";
 			
 		}
 		
 		if(emailServer.equals("yahoo")) {
-			username = "billybronco567@yahoo.com";
+			username = LoginGUI.emailName;
 			from = username;
-			password = "fehrieoydktslbqu";
+			password = LoginGUI.password;
 			portNumber = "993";
 			smtpHost = "smtp.mail.yahoo.com";
 			
@@ -51,9 +53,9 @@ public class MailClient
 		}
 
 		if(emailServer.equals("outlook")) {
-			username = "billybronconetworking2022@outlook.com";
+			username = LoginGUI.emailName;
 			from = username;
-			password = "cs380001";
+			password = LoginGUI.password;
 			portNumber = "993";
 			smtpHost = "smtp.outlook.com";
 			

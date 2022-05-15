@@ -28,11 +28,12 @@ public class ReadEmail
 		String password = null;
 		String portNumber = null;
 		
+		
 		if(emailServer.equals("gmail")) {
 			host = "imap.gmail.com";
 			mailStoreType = "imap";
-			username = "billybronconetworking2022@gmail.com";
-			password = "cs380002";
+			username = LoginGUI.emailName;
+			password = LoginGUI.password;
 			portNumber= "995";
 			
 		}
@@ -40,8 +41,8 @@ public class ReadEmail
 		if(emailServer.equals("yahoo")) {
 			host = "imap.mail.yahoo.com";
 			mailStoreType = "imap";
-			username = "billybronco567@yahoo.com";
-			password = "fehrieoydktslbqu";
+			username = LoginGUI.emailName;
+			password = LoginGUI.password;
 			portNumber = "993";
 			
 		}
@@ -49,8 +50,8 @@ public class ReadEmail
 		if(emailServer.equals("outlook")) {
 			host = "outlook.office365.com";
 			mailStoreType = "imap";
-			username = "billybronconetworking2022@outlook.com";
-			password = "cs380001";
+			username = LoginGUI.emailName;
+			password = LoginGUI.password;
 			portNumber = "993";
 			
 		}

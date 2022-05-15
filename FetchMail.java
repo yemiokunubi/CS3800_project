@@ -16,30 +16,31 @@ public class FetchMail
 		String username = null;
 		String password = null;
 		String portNumber = null;
+
 		
 		if(emailServer.equals("gmail")) {
-			host = "imap.gmail.com";
+			host = LoginGUI.imapName;
 			mailStoreType = "imap";
-			username = "billybronconetworking2022@gmail.com";
-			password = "cs380002";
+			username = LoginGUI.emailName;
+			password = LoginGUI.password;
 			portNumber= "995";
 			
 		}
 		
 		if(emailServer.equals("yahoo")) {
-			host = "imap.mail.yahoo.com";
+			host = LoginGUI.imapName;
 			mailStoreType = "imap";
-			username = "billybronco567@yahoo.com";
-			password = "fehrieoydktslbqu";
+			username = LoginGUI.emailName;
+			password = LoginGUI.password;
 			portNumber = "993";
 			
 		}
 		
 		if(emailServer.equals("outlook")) {
-			host = "outlook.office365.com";
+			host = LoginGUI.imapName;
 			mailStoreType = "imap";
-			username = "billybronconetworking2022@outlook.com";
-			password = "cs380001";
+			username = LoginGUI.emailName;
+			password = LoginGUI.password;
 			portNumber = "993";
 			
 		}

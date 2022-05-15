@@ -22,6 +22,7 @@ import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.awt.Color;
 
+
 public class LoginGUI extends JFrame {
 
 	public static String emailChoice = "yahoo";
@@ -34,7 +35,14 @@ public class LoginGUI extends JFrame {
 	private JPasswordField passwordField;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 
+	// emailName = "billybronco567@yahoo.com";
+	// password = "fehrieoydktslbqu";
 	
+	//	emailName = "billybronconetworking2022@gmail.com";
+	// password = "cs380002";
+	
+	// emailName = "billybronconetworking2022@outlook.com";
+	// password = "cs380001";
 
 	/**
 	 * Launch the application.
@@ -99,7 +107,6 @@ public class LoginGUI extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				emailChoice = "outlook";
 				imapName = "outlook.office365.com";
-				// emailName = "billybronconetworking2022@gmail.com";
 				// password = "cs380001";
 				portNum = "993";
 			}
