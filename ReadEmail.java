@@ -85,7 +85,7 @@ public class ReadEmail
 
 			// Retrieve messages from folder in an array and print them.
 			Message[] messages = emailFolder.getMessages();
-			System.out.println("Your Inbox \n\nNumber of Emails: " + messages.length);
+			// System.out.println("Your Inbox \n\nNumber of Emails: " + messages.length);
 
 			for (int i = 0; i < messages.length; i++) 
 			{
