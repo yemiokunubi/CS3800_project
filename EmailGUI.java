@@ -3,14 +3,17 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.Image;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.DefaultListModel;
 import javax.swing.GroupLayout;
+import javax.swing.ImageIcon;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -65,15 +68,30 @@ public class EmailGUI extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		
+		
 		// Adds inbox title
 		JLabel inboxLabel = new JLabel("Inbox");
 		inboxLabel.setFont(new Font("Monaco", Font.BOLD, 40));
 		inboxLabel.setForeground(new Color(147, 112, 219));
-		inboxLabel.setBounds(76, 41, 168, 47);
+		inboxLabel.setBounds(8, 31, 168, 47);
 		contentPane.add(inboxLabel);
+		
+		// Adds Current Message title
+		JLabel currMessageLabel = new JLabel("Message");
+		currMessageLabel.setFont(new Font("Monaco", Font.BOLD, 20));
+		currMessageLabel.setForeground(new Color(147, 112, 219));
+		currMessageLabel.setBounds(280, 40, 168, 47);
+		contentPane.add(currMessageLabel);
+		
+		
 
 		
 		JButton btnNewButton = new JButton("+ Compose");
+		btnNewButton.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
+		btnNewButton.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
+		btnNewButton.setOpaque(true);
+		btnNewButton.setForeground(new Color(255, 255, 255));
+		btnNewButton.setBackground(new Color(147, 112, 219));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				SendMailGUI sendMail = new SendMailGUI();
