@@ -1,4 +1,3 @@
-
 import java.util.ArrayList;
 import java.util.Properties;
 
@@ -8,47 +7,49 @@ public class FetchMail
 {
 	public static void main(String[] args) 
 	{
-		String emailServer = LoginGUI.emailChoice;	//email server that the user chooses
-				
-//		public static String host;
+		// Gets chosen email server from LoginGUI.
+		String emailServer = LoginGUI.emailChoice;
+
 		String host = null;
 		String mailStoreType = null;
 		String username = null;
 		String password = null;
 		String portNumber = null;
 
-		
-		if(emailServer.equals("gmail")) {
+		// Check which email server user chose, then assign appropriate settings.
+		if(emailServer.equals("gmail")) 
+		{
 			host = LoginGUI.imapName;
 			mailStoreType = "imap";
 			username = LoginGUI.emailName;
 			password = LoginGUI.password;
 			portNumber= "995";
-			
 		}
 		
-		if(emailServer.equals("yahoo")) {
+		if(emailServer.equals("yahoo")) 
+		{
 			host = LoginGUI.imapName;
 			mailStoreType = "imap";
 			username = LoginGUI.emailName;
 			password = LoginGUI.password;
 			portNumber = "993";
-			
 		}
 		
-		if(emailServer.equals("outlook")) {
+		if(emailServer.equals("outlook")) 
+		{
 			host = LoginGUI.imapName;
 			mailStoreType = "imap";
 			username = LoginGUI.emailName;
 			password = LoginGUI.password;
 			portNumber = "993";
-			
 		}
-				
+		
+		// Create array list of emails, then print them.
 		ArrayList<String> emails = checkMail(host, mailStoreType, username, password, portNumber);
-		 for (String i : emails) {
-		      System.out.println(i);
-		    }
+		for (String i : emails) 
+		{
+		     System.out.println(i);
+		}
 	}
 
 	public static ArrayList<String> checkMail(String host, String storeType, String user, String password, String portNumber) 
@@ -65,7 +66,7 @@ public class FetchMail
 			properties.put("mail.smtp.ssl.protocols", "TLSv1.2");
 			Session emailSession = Session.getDefaultInstance(properties);
 
-			// Create POP3 store object and connect with the pop server.
+			// Create IMAP store object and connect with the pop server.
 			Store store = emailSession.getStore("imaps");
 
 			store.connect(host, user, password);
@@ -76,10 +77,8 @@ public class FetchMail
 
 			// Retrieve messages from folder in an array and print them.
 			Message[] messages = emailFolder.getMessages();
-			// System.out.println("Your Inbox \n\nNumber of Emails: " + messages.length);
-			
 
-			//Adds html tags to the string so that it can be sent to the GUI to display properly
+			// Adds html tags to the string so that it can be sent to the GUI to display properly.
 			String result;
 			for (int i = 0, n = messages.length; i < n; i++) 
 			{
@@ -95,9 +94,6 @@ public class FetchMail
 			// Close the store object and folder.
 			emailFolder.close(false);
 			store.close();
-			
-			
-
 		}
 
 		catch (NoSuchProviderException e) 
@@ -114,5 +110,4 @@ public class FetchMail
 		}
 		return emails;
 	}
-
 }
