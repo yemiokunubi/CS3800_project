@@ -1,4 +1,3 @@
-
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
@@ -18,9 +17,8 @@ public class ReadEmail
 {
 	public static void main(String[] args) 
 	{
-
-		
-		String emailServer = LoginGUI.emailChoice;	//email server that the user chooses
+		// Taken from user's choice of email server.
+		String emailServer = LoginGUI.emailChoice;
 		
 		String host = null;
 		String mailStoreType = null;
@@ -28,34 +26,33 @@ public class ReadEmail
 		String password = null;
 		String portNumber = null;
 		
-		
-		if(emailServer.equals("gmail")) {
+		// Set port number and host to chosen email server.
+		if(emailServer.equals("gmail")) 
+		{
 			host = "imap.gmail.com";
 			mailStoreType = "imap";
 			username = LoginGUI.emailName;
 			password = LoginGUI.password;
 			portNumber= "995";
-			
 		}
 		
-		if(emailServer.equals("yahoo")) {
+		if(emailServer.equals("yahoo")) 
+		{
 			host = "imap.mail.yahoo.com";
 			mailStoreType = "imap";
 			username = LoginGUI.emailName;
 			password = LoginGUI.password;
 			portNumber = "993";
-			
 		}
 
-		if(emailServer.equals("outlook")) {
+		if(emailServer.equals("outlook")) 
+		{
 			host = "outlook.office365.com";
 			mailStoreType = "imap";
 			username = LoginGUI.emailName;
 			password = LoginGUI.password;
 			portNumber = "993";
-			
 		}
-
 	}
 
 	public static ArrayList<String> fetch(String imapHost, String storeType, String user, String password, String portNumber) 
@@ -81,11 +78,8 @@ public class ReadEmail
 			Folder emailFolder = store.getFolder("INBOX");
 			emailFolder.open(Folder.READ_ONLY);
 
-			// BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-
 			// Retrieve messages from folder in an array and print them.
 			Message[] messages = emailFolder.getMessages();
-			// System.out.println("Your Inbox \n\nNumber of Emails: " + messages.length);
 
 			for (int i = 0; i < messages.length; i++) 
 			{
@@ -132,6 +126,7 @@ public class ReadEmail
 			str.append((String) p.getContent());
 			str.append(System.getProperty("line.separator"));
 		}
+		
 		// If content has an attachment.
 		else if (p.isMimeType("multipart/*")) 
 		{
