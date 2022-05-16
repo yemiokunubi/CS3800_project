@@ -48,7 +48,7 @@ public class LoginGUI extends JFrame
 	// emailName = "billybronco14@yahoo.com";
 	// password = "wfohxhdigdxcvtpz";
 	
-	// emailName = "billybronconetworking2022@gmail.com";
+	//	emailName = "billybronconetworking2022@gmail.com";
 	// password = "cs380002";
 	
 	// emailName = "billybronconetworking2022@outlook.com";
@@ -100,8 +100,6 @@ public class LoginGUI extends JFrame
 			{
 				emailChoice = "yahoo";
 				imapName = "imap.mail.yahoo.com";
-				// emailName = "billybronco567@yahoo.com";
-				// password = "fehrieoydktslbqu";
 				portNum = "993";
 			}
 		});
@@ -117,8 +115,6 @@ public class LoginGUI extends JFrame
 			{
 				emailChoice = "gmail";
 				imapName = "imap.gmail.com";
-				// emailName = "billybronconetworking2022@gmail.com";
-				// password = "cs380001";
 				portNum = "995";
 			}
 		});
@@ -135,7 +131,6 @@ public class LoginGUI extends JFrame
 			{
 				emailChoice = "outlook";
 				imapName = "outlook.office365.com";
-				// password = "cs380001";
 				portNum = "993";
 			}
 		});
@@ -181,13 +176,15 @@ public class LoginGUI extends JFrame
 					ArrayList<String> emails = FetchMail.checkMail(imapName, "imaps", emailName, password, portNum);
 					if (EmailValidator.checkMail(emailName) && emails.size() > 0) 
 					{
-						EmailGUI newEmailWindow = new EmailGUI();		//change ticket window name
+						// Change ticket window name.
+						EmailGUI newEmailWindow = new EmailGUI();
 						newEmailWindow.setVisible(true);
 						setVisible(false);
 						emails = null;
 					} 
 					else 
 					{
+						// Error handling of login credentials.
 						if (EmailValidator.checkMail(emailName)) 
 						{
 							incorrectLabel.setText("Incorrect email and/or password!");
@@ -255,6 +252,5 @@ public class LoginGUI extends JFrame
 		lblSignIn.setFont(new Font("Monaco", Font.BOLD, 30));
 		lblSignIn.setBounds(411, 67, 168, 47);
 		contentPane.add(lblSignIn);
-		
 	}
 }
