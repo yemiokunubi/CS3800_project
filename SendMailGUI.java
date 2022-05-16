@@ -54,6 +54,8 @@ public class SendMailGUI extends JDialog
 		setBounds(100, 100, 651, 415);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
+		Color backgroundColor = new Color(201,223,236);
+		contentPane.setBackground(backgroundColor);
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		
 		// To and From labels.
