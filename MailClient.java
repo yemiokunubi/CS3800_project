@@ -15,11 +15,16 @@ import javax.activation.*;
 import javax.mail.*;
 import javax.mail.internet.*;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
 public class MailClient
 {
 	public static String username;
 	public static String password;
-	public static void sendMail(String recepient, String subject, String body, String filePath) 
+	public static void sendMail(String recepient, String subject, String body, String[] filePath) 
 	{
 
 		String to = recepient;
@@ -30,9 +35,8 @@ public class MailClient
 		String portNumber = null;
 		String from = null;
 		String smtpHost = null;
-//		LoginGUI.imapName, "imaps", LoginGUI.emailName, LoginGUI.password, LoginGUI.portNum
+//		LoginGUI.imapName, "imaps", LoginGUI.emailName, LoginGUI.password, LoginGUI.portNum		
 
-		
 		if(emailServer.equals("gmail")) {
 			username = LoginGUI.emailName;
 			from = username;
@@ -115,13 +119,27 @@ public class MailClient
 
 			// Ask user for file.
 			// EX - /Users/kyle/eclipse-workspace/MailClient/bin/filename (on Apple, will be different on Windows)
-			if (filePath.contains("\\") || filePath.contains("/")) { 
+			for (int i = 0; i < filePath.length; i++) {
 
-				DataSource source = new FileDataSource(filePath);
-						
-				messageBodyPart.setDataHandler(new DataHandler(source));
-				messageBodyPart.setFileName(filePath);
-				multipart.addBodyPart(messageBodyPart);
+				if (filePath[i] == null) {
+					break;
+				}
+
+				if (filePath[i].contains("\\") || filePath[i].contains("/")) { 
+
+					MimeBodyPart attachPart = new MimeBodyPart();
+
+					try 
+					{
+						attachPart.attachFile(filePath[i]);
+					} 
+					catch (IOException ex) 
+					{
+						ex.printStackTrace();
+					}
+
+					multipart.addBodyPart(attachPart);
+				}
 			}
 
 			// Send the complete message parts.

@@ -28,6 +28,10 @@ public class SendMailGUI extends JDialog
 	private JTextField toTextField;
 	private JTextField subjectTextField;
 	private JTextField attachmentTextField;
+	private String files = "";
+	private File selectedFile;
+	private String[] selectedFileArray = new String[5];
+	private int counter = 0;
 
 	/**
 	 * Launch the application.
@@ -90,11 +94,18 @@ public class SendMailGUI extends JDialog
 			public void actionPerformed(ActionEvent e) 
 			{
 				JFileChooser fileChooser = new JFileChooser();
+				fileChooser.setMultiSelectionEnabled(true);
 			    int returnValue = fileChooser.showOpenDialog(null);
-			    if (returnValue == JFileChooser.APPROVE_OPTION) 
+			    if (returnValue == JFileChooser.APPROVE_OPTION && counter < 5) 
 			    {
-				    File selectedFile = fileChooser.getSelectedFile();
-				    attachmentTextField.setText(selectedFile.getAbsolutePath());
+				    selectedFile = fileChooser.getSelectedFile();
+					selectedFileArray[counter] = selectedFile.getAbsolutePath();
+				    if (files == null)
+				    	files += selectedFile.getName();
+					else
+						files += selectedFile.getName() + ",";
+				    attachmentTextField.setText(files);
+					counter++;
 			    }
 
 			}
@@ -111,8 +122,8 @@ public class SendMailGUI extends JDialog
 				String to = toTextField.getText();
 				String subject = subjectTextField.getText();
 				String body = textArea.getText();
-				String file = attachmentTextField.getText();
-				MailClient.sendMail(to, subject, body, file);
+
+				MailClient.sendMail(to, subject, body, selectedFileArray);
 				JOptionPane.showMessageDialog(null, "Message sent");
 			}
 		});
