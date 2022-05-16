@@ -46,9 +46,9 @@ public class LoginGUI extends JFrame
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 
 	// emailName = "billybronco14@yahoo.com";
-	// password = "fehrieoydktslbqu";
+	// password = "wfohxhdigdxcvtpz";
 	
-	//	emailName = "billybronconetworking2022@gmail.com";
+	// emailName = "billybronconetworking2022@gmail.com";
 	// password = "cs380002";
 	
 	// emailName = "billybronconetworking2022@outlook.com";
@@ -190,8 +190,7 @@ public class LoginGUI extends JFrame
 					{
 						if (EmailValidator.checkMail(emailName)) 
 						{
-							System.out.println("Incorrect password");
-							incorrectLabel.setText("Incorrect password!");
+							incorrectLabel.setText("Incorrect email and/or password!");
 							incorrectLabel.setVisible(true);
 						}
 							
