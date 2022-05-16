@@ -1,6 +1,6 @@
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
-
+import java.awt.Color;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFileChooser;
@@ -55,7 +55,7 @@ public class SendMailGUI extends JDialog
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		Color backgroundColor = new Color(201,223,236);
-		contentPane.setBackground(backgroundColor);
+		contentPanel.setBackground(backgroundColor);
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		
 		// To and From labels.
