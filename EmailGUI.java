@@ -32,12 +32,10 @@ import javax.swing.JTextArea;
 
 public class EmailGUI extends JFrame 
 {
-
 	private JPanel contentPane;
 	
 	private ArrayList<String> emails = FetchMail.checkMail(LoginGUI.imapName, "imaps", LoginGUI.emailName, LoginGUI.password, LoginGUI.portNum);
 	private ArrayList<String> emailBody = ReadEmail.fetch(LoginGUI.imapName, "imaps", LoginGUI.emailName, LoginGUI.password, LoginGUI.portNum);
-
 
 	/**
 	 * Launch the application.
