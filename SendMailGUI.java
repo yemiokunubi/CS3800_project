@@ -120,11 +120,18 @@ public class SendMailGUI extends JDialog
 			public void actionPerformed(ActionEvent e) 
 			{
 				String to = toTextField.getText();
-				String subject = subjectTextField.getText();
-				String body = textArea.getText();
+				if (!EmailValidator.checkMail(to)) 
+					{
+						System.out.println("This email does not exist. Please try again");
+						
+					}
+				else {	
+					String subject = subjectTextField.getText();
+					String body = textArea.getText();
 
-				MailClient.sendMail(to, subject, body, selectedFileArray);
-				JOptionPane.showMessageDialog(null, "Message sent");
+					MailClient.sendMail(to, subject, body, selectedFileArray);
+					JOptionPane.showMessageDialog(null, "Message sent");
+				}
 			}
 		});
 		
