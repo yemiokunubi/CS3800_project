@@ -55,10 +55,10 @@ public class SendMailGUI extends JDialog
 	 */
 	public SendMailGUI() 
 	{
-		setBounds(100, 100, 651, 415);
+		setBounds(100, 100, 550, 415);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
-		Color backgroundColor = new Color(201,223,236);
+		Color backgroundColor = new Color(201, 223, 236);
 		contentPanel.setBackground(backgroundColor);
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		
@@ -121,16 +121,16 @@ public class SendMailGUI extends JDialog
 			{
 				String to = toTextField.getText();
 				if (!EmailValidator.checkMail(to)) 
-					{
-						System.out.println("This email does not exist. Please try again");
-						
-					}
-				else {	
+				{
+					JOptionPane.showMessageDialog(null, "The recepient's email does not exist. Please try again.");
+				}
+				else 
+				{	
 					String subject = subjectTextField.getText();
 					String body = textArea.getText();
 
 					MailClient.sendMail(to, subject, body, selectedFileArray);
-					JOptionPane.showMessageDialog(null, "Message sent");
+					JOptionPane.showMessageDialog(null, "Message sent!");
 				}
 			}
 		});
@@ -160,12 +160,13 @@ public class SendMailGUI extends JDialog
 							.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
 								.addGroup(Alignment.TRAILING, gl_contentPanel.createSequentialGroup()
 									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(sendButton))
+									.addComponent(sendButton)
+									)
 								.addGroup(Alignment.TRAILING, gl_contentPanel.createSequentialGroup()
 									.addComponent(attachmentTextField, GroupLayout.PREFERRED_SIZE, 298, GroupLayout.PREFERRED_SIZE)
 									.addPreferredGap(ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
 									.addComponent(attachmentButton)
-									.addGap(35))
+									.addGap(18))
 								.addComponent(toTextField, GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE)
 								.addComponent(subjectTextField, GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE))
 							.addGap(68))))
