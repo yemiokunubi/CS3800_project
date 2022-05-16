@@ -34,7 +34,6 @@ import javax.swing.border.TitledBorder;
 
 public class LoginGUI extends JFrame 
 {
-
 	public static String emailChoice = "yahoo";
 	public static String imapName;
 	public static String emailName;
@@ -44,15 +43,6 @@ public class LoginGUI extends JFrame
 	private JTextField email_input;
 	private JPasswordField passwordField;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
-
-	// emailName = "billybronco14@yahoo.com";
-	// password = "wfohxhdigdxcvtpz";
-	
-	//	emailName = "billybronconetworking2022@gmail.com";
-	// password = "cs380002";
-	
-	// emailName = "billybronconetworking2022@outlook.com";
-	// password = "cs380001";
 
 	/**
 	 * Launch the application.
