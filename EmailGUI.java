@@ -30,13 +30,13 @@ import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.JTextArea;
 
-public class EmailGUI extends JFrame {
+public class EmailGUI extends JFrame 
+{
 
 	private JPanel contentPane;
-//	private ArrayList<String> emails = FetchMail.checkMail("imap.gmail.com", "imaps", "billybronconetworking2022@gmail.com", "cs380001");
-//	private ArrayList<String> emailBody = ReadEmail.fetch("imap.gmail.com", "imaps", "billybronconetworking2022@gmail.com", "cs380001");
-//	private ArrayList<String> emails = FetchMail.checkMail("imap.mail.yahoo.com", "imaps", "billybronco567@yahoo.com", "fehrieoydktslbqu", "993");
-//	private ArrayList<String> emailBody = ReadEmail.fetch("imap.mail.yahoo.com", "imaps", "billybronco567@yahoo.com", "fehrieoydktslbqu", "993");
+	// private ArrayList<String> emails = FetchMail.checkMail("imap.gmail.com", "imaps", "billybronconetworking2022@gmail.com", "cs380001");
+	// private ArrayList<String> emailBody = ReadEmail.fetch("imap.gmail.com", "imaps", "billybronconetworking2022@gmail.com", "cs380001");
+	// private ArrayList<String> emails = FetchMail.checkMail("imap.mail.yahoo.com", "imaps", "billybronco567@yahoo.com", "fehrieoydktslbqu", "993");
 	
 	private ArrayList<String> emails = FetchMail.checkMail(LoginGUI.imapName, "imaps", LoginGUI.emailName, LoginGUI.password, LoginGUI.portNum);
 	private ArrayList<String> emailBody = ReadEmail.fetch(LoginGUI.imapName, "imaps", LoginGUI.emailName, LoginGUI.password, LoginGUI.portNum);
@@ -45,13 +45,19 @@ public class EmailGUI extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
+	public static void main(String[] args) 
+	{
+		EventQueue.invokeLater(new Runnable() 
+		{
+			public void run() 
+			{
+				try 
+				{
 					EmailGUI frame = new EmailGUI();
 					frame.setVisible(true);
-				} catch (Exception e) {
+				} 
+				catch (Exception e) 
+				{
 					e.printStackTrace();
 				}
 			}
@@ -61,7 +67,8 @@ public class EmailGUI extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public EmailGUI() {
+	public EmailGUI() 
+	{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 675, 450);
 		contentPane = new JPanel();
@@ -71,38 +78,38 @@ public class EmailGUI extends JFrame {
 		setContentPane(contentPane);
 		
 		
-		// Adds inbox title
+		// Adds inbox title.
 		JLabel inboxLabel = new JLabel("Inbox");
 		inboxLabel.setFont(new Font("Monaco", Font.BOLD, 40));
 		inboxLabel.setForeground(new Color(147, 112, 219));
 		inboxLabel.setBounds(8, 25, 168, 47);
 		contentPane.add(inboxLabel);
 		
-		// Adds Current Message title
+		// Adds Current Message title.
 		JLabel currMessageLabel = new JLabel("Message");
 		currMessageLabel.setFont(new Font("Monaco", Font.BOLD, 20));
 		currMessageLabel.setForeground(new Color(147, 112, 219));
 		currMessageLabel.setBounds(280, 40, 168, 47);
 		contentPane.add(currMessageLabel);
 		
-		// Adds Current Message title
+		// Adds double-click label
 		JLabel dClickLabel = new JLabel("Double Click to view contents");
-		dClickLabel.setFont(new Font("Monaco", Font.BOLD, 10));
+		dClickLabel.setFont(new Font("Monaco", Font.BOLD, 9));
 		dClickLabel.setForeground(new Color(54, 69, 79));
 		dClickLabel.setBounds(10, 47, 168, 47);
 		contentPane.add(dClickLabel);
 		
-		
-
-		
+		// Adds Compose button.
 		JButton btnNewButton = new JButton("+ Compose");
 		btnNewButton.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
 		btnNewButton.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
 		btnNewButton.setOpaque(true);
 		btnNewButton.setForeground(new Color(255, 255, 255));
 		btnNewButton.setBackground(new Color(147, 112, 219));
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		btnNewButton.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent e) 
+			{
 				SendMailGUI sendMail = new SendMailGUI();
 				sendMail.setVisible(rootPaneCheckingEnabled);
 			}
@@ -146,29 +153,28 @@ public class EmailGUI extends JFrame {
 		}
 		
 		JList list = new JList(listModel);
-		list.addMouseListener(new MouseAdapter() {
+		list.addMouseListener(new MouseAdapter() 
+		{
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mouseClicked(MouseEvent e) 
+			{
 				 JList list = (JList)e.getSource();
-			        if (e.getClickCount() == 2) {
-
-			            // Double-click detected
-			            int index = list.locationToIndex(e.getPoint());
-			            textArea.setText(emailBody.get(index));
-			        }
+			     if (e.getClickCount() == 2) 
+			     {
+			         // Double-click detected
+			         int index = list.locationToIndex(e.getPoint());
+			         textArea.setText(emailBody.get(index));
+			     }
 			}
 		});
 		list.setCellRenderer(new MyListCellRenderer());
 		scrollPane.setViewportView(list);
 		
-		
-		
 		contentPane.setLayout(gl_contentPane);
 	}
 	
-	
-	//Helper class for the JList. Normally, the JList will show items on a single line; this class helps break up each item
-	//while making the entire thing still selectable in the JList
+	// Helper class for the JList. Normally, the JList will show items on a single line; this class helps break up each item
+	// while making the entire thing still selectable in the JList
 	private class MyListCellRenderer extends DefaultListCellRenderer 
 	{
         @Override
@@ -181,9 +187,5 @@ public class EmailGUI extends JFrame {
 
             return this;
         }
-
     }
-
 }
-
-
