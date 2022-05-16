@@ -23,7 +23,6 @@ import java.awt.Image;
 
 public class SendMailGUI extends JDialog 
 {
-
 	private final JPanel contentPanel = new JPanel();
 	private JTextField toTextField;
 	private JTextField subjectTextField;
@@ -95,19 +94,22 @@ public class SendMailGUI extends JDialog
 			{
 				JFileChooser fileChooser = new JFileChooser();
 				fileChooser.setMultiSelectionEnabled(true);
-			    int returnValue = fileChooser.showOpenDialog(null);
-			    if (returnValue == JFileChooser.APPROVE_OPTION && counter < 5) 
-			    {
-				    selectedFile = fileChooser.getSelectedFile();
-					selectedFileArray[counter] = selectedFile.getAbsolutePath();
-				    if (files == null)
-				    	files += selectedFile.getName();
-					else
-						files += selectedFile.getName() + ",";
-				    attachmentTextField.setText(files);
-					counter++;
-			    }
-
+			    	int returnValue = fileChooser.showOpenDialog(null);
+			    	if (returnValue == JFileChooser.APPROVE_OPTION && counter < 5) 
+			    	{
+					selectedFile = fileChooser.getSelectedFile();
+				    	selectedFileArray[counter] = selectedFile.getAbsolutePath();
+				    	if(files == null)
+				    	{
+				    		files += selectedFile.getName();
+				    	}
+				    	else
+				    	{
+				    		files += selectedFile.getName() + ",";
+				    	}
+				    	attachmentTextField.setText(files);
+				    	counter++;
+			    	}
 			}
 		});
 		
