@@ -1,4 +1,3 @@
-
 /** 
  * Project by Jordan Bui, Christopher Hoang, Yemi Okunubi, Gia Quach, Kyle Tam
  *
@@ -9,64 +8,54 @@
  */
 
 import java.util.Properties; 
-import java.util.Scanner;
-
-import javax.activation.*;
 import javax.mail.*;
 import javax.mail.internet.*;
 
-import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 
 public class MailClient
 {
 	public static String username;
 	public static String password;
+	
 	public static void sendMail(String recepient, String subject, String body, String[] filePath) 
 	{
+		// Taken from user's choice of email server.
+		String emailServer = LoginGUI.emailChoice;
 
-		String to = recepient;
-
-		
-		String emailServer = LoginGUI.emailChoice;	//email server that the user chooses
-		
 		String portNumber = null;
+		String to = recepient;
 		String from = null;
 		String smtpHost = null;
-//		LoginGUI.imapName, "imaps", LoginGUI.emailName, LoginGUI.password, LoginGUI.portNum		
+		// LoginGUI.imapName, "imaps", LoginGUI.emailName, LoginGUI.password, LoginGUI.portNum		
 
-		if(emailServer.equals("gmail")) {
+		// Set port number and host to chosen email server.
+		if(emailServer.equals("gmail")) 
+		{
 			username = LoginGUI.emailName;
 			from = username;
 			password = LoginGUI.password;
 			portNumber= "995";
 			smtpHost = "smtp.gmail.com";
-			
 		}
 		
-		if(emailServer.equals("yahoo")) {
+		if(emailServer.equals("yahoo")) 
+		{
 			username = LoginGUI.emailName;
 			from = username;
 			password = LoginGUI.password;
 			portNumber = "993";
 			smtpHost = "smtp.mail.yahoo.com";
-			
-			
 		}
 
-		if(emailServer.equals("outlook")) {
+		if(emailServer.equals("outlook")) 
+		{
 			username = LoginGUI.emailName;
 			from = username;
 			password = LoginGUI.password;
 			portNumber = "993";
 			smtpHost = "smtp.outlook.com";
-			
 		}
-		
-		// Set host.
-		String host = "localhost";
 
 		// Properties to set before creating Session object.
 		Properties properties = System.getProperties();
@@ -105,7 +94,6 @@ public class MailClient
 			// Create the message body object.
 			BodyPart messageBodyPart = new MimeBodyPart();
 
-
 			messageBodyPart.setText(body + "\n");
 
 			// Create a multipart message.
@@ -118,15 +106,15 @@ public class MailClient
 			messageBodyPart = new MimeBodyPart();
 
 			// Ask user for file.
-			// EX - /Users/kyle/eclipse-workspace/MailClient/bin/filename (on Apple, will be different on Windows)
-			for (int i = 0; i < filePath.length; i++) {
-
-				if (filePath[i] == null) {
+			for (int i = 0; i < filePath.length; i++) 
+			{
+				if (filePath[i] == null) 
+				{
 					break;
 				}
 
-				if (filePath[i].contains("\\") || filePath[i].contains("/")) { 
-
+				if (filePath[i].contains("\\") || filePath[i].contains("/")) 
+				{ 
 					MimeBodyPart attachPart = new MimeBodyPart();
 
 					try 
@@ -147,9 +135,7 @@ public class MailClient
 
 			// Send message.
 			Transport.send(message);
-
 		}
-
 		catch (MessagingException e) 
 		{
 			throw new RuntimeException(e);
