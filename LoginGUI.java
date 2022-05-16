@@ -87,6 +87,8 @@ public class LoginGUI extends JFrame
 		contentPane = new JPanel();
 		contentPane.setBackground(UIManager.getColor("FormattedTextField.background"));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		Color backgroundColor = new Color(201,223,236);
+		contentPane.setBackground(backgroundColor);
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
