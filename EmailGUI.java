@@ -66,6 +66,8 @@ public class EmailGUI extends JFrame {
 		setBounds(100, 100, 675, 450);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		Color backgroundColor = new Color(201,223,236);
+		contentPane.setBackground(backgroundColor);
 		setContentPane(contentPane);
 		
 		
@@ -73,7 +75,7 @@ public class EmailGUI extends JFrame {
 		JLabel inboxLabel = new JLabel("Inbox");
 		inboxLabel.setFont(new Font("Monaco", Font.BOLD, 40));
 		inboxLabel.setForeground(new Color(147, 112, 219));
-		inboxLabel.setBounds(8, 31, 168, 47);
+		inboxLabel.setBounds(8, 25, 168, 47);
 		contentPane.add(inboxLabel);
 		
 		// Adds Current Message title
@@ -82,6 +84,13 @@ public class EmailGUI extends JFrame {
 		currMessageLabel.setForeground(new Color(147, 112, 219));
 		currMessageLabel.setBounds(280, 40, 168, 47);
 		contentPane.add(currMessageLabel);
+		
+		// Adds Current Message title
+		JLabel dClickLabel = new JLabel("Double Click to view contents");
+		dClickLabel.setFont(new Font("Monaco", Font.BOLD, 10));
+		dClickLabel.setForeground(new Color(54, 69, 79));
+		dClickLabel.setBounds(10, 47, 168, 47);
+		contentPane.add(dClickLabel);
 		
 		
 
